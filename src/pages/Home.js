@@ -3,7 +3,7 @@ import TodoList from '../components/TodoList';
 import AddForm from '../components/AddForm';
 class Home extends Component {
 	state = {
-		todos: [ { id: 1, content: 'Learn react js' }, { id: 2, content: 'watch movie' } ]
+		todos: [ { id: 1, content: 'Learn react .js' }, { id: 2, content: 'watch movie' } ]
 	}
 
 	addTodo = (todo) =>{
