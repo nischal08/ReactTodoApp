@@ -10,9 +10,9 @@ export class AddForm extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-        console.log(this.state);
-        this.props.addTodo({...this.state,id: Math.random()});
-        this.setState({content:''});
+		console.log(this.state);
+		this.props.addTodo({ ...this.state, id: Math.random() });//spreading object with spread operator ...
+		this.setState({ content: '' });
 	};
 
 	render() {

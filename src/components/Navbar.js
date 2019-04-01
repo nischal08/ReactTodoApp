@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link , NavLink ,withRouter} from 'react-router-dom'
 
 const Navbar = (props) => {
 	return (
@@ -9,14 +10,17 @@ const Navbar = (props) => {
 				</a>
 				<ul id="nav-mobile" className="right hide-on-med-and-down">
 					<li>
-						<a href="/">Todos</a>
+					<Link to="/">Home</Link>
 					</li>
 					<li>
-						<a href="/">Completed Tasks</a>
+						<NavLink to="/About">About</NavLink>	
+				</li>
+					<li>
+					<NavLink to="/Contact">Contact</NavLink>
 					</li>
 				</ul>
 			</div>
 		</nav>
 	);
 };
-export default Navbar;
+export default withRouter(Navbar)
