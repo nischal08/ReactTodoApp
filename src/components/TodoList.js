@@ -8,7 +8,7 @@ const TodoList = ({ todos, deleteTodo }) => {
 				todos.map((todo) => (
 					<p key={todo.id} onClick={(e) => deleteTodo(todo.id)} className="collection-item">
 						{todo.content}
-						<Link to={'/todo/'+todo.id}>
+						<Link to={'/todo/'+todoId}>
 						<a className="waves-effect waves-light btn">View</a>
 						</Link>
 					</p>

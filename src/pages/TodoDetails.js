@@ -5,9 +5,9 @@ export default class TodoDetails extends Component{
         return(
             <div>
                 Details Page
+                {this.props.match.params.todoId}
             </div>
             )
         }
     }
 
-    
