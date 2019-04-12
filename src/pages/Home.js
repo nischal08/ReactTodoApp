@@ -1,34 +1,25 @@
-import React , {Component} from 'react'
-import TodoList from '../components/TodoList';
-import AddForm from '../components/AddForm';
+import React, { Component } from "react";
+import TodoList from "../components/TodoList";
+import AddForm from "../components/AddForm";
+import TodoContext from "../context/TodoContext";
+
 class Home extends Component {
-	state = {
-		todos: [ { id: 1, content: 'Learn react .js' }, { id: 2, content: 'watch movie' } ]
-	}
+  render() {
+    console.log(this.props);
 
-	addTodo = (todo) =>{
-		const todos = [...this.state.todos, todo]; //spread operator
-		this.setState({todos});
-	}
-
-	deleteTodo = (id) =>{
-		const todos = this.state.todos.filter(todo => todo.id != id);//es6 filter method
-		this.setState({todos});
-	}
-
-	render() {
-        console.log(this.props);
-		const {todos} = this.state;
-		return (
-			
-				<div className="container">
-					<TodoList deleteTodo={this.deleteTodo} todos={todos} />
-					<AddForm addTodo={this.addTodo}/>
-
-				</div>
-			
-		);
-	}
+    return (
+      <TodoContext.Consumer>
+        {context => {
+			console.log(context);
+			return(
+          <div className="container">
+            <TodoList deleteTodo={context.deleteTodo} todos={context.todos} />
+            <AddForm addTodo={context.addTodo} />
+          </div>
+        )}}
+      </TodoContext.Consumer>
+    );
+  }
 }
 
-export default Home
+export default Home;

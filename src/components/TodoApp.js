@@ -7,19 +7,47 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import TodoDetails from "../pages/TodoDetails";
+import TodoContext from "../context/TodoContext";
 
-const TodoApp = props => {
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <Navbar />
-        <Route path="/" exact component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/todo/:id" component={TodoDetails} />
-      </div>
-    </BrowserRouter>
-  );
+class TodoApp extends Component {
+  state = {
+    todos: [
+      { id: 1, content: "Learn react .js" },
+      { id: 2, content: "watch movie" }
+    ]
+  };
+
+  addTodo = todo => {
+    const todos = [...this.state.todos, todo]; //spread operator
+    this.setState({ todos });
+  };
+
+  deleteTodo = id => {
+    const todos = this.state.todos.filter(todo => todo.id != id); //es6 filter method
+    this.setState({ todos });
+  };
+
+  render() {
+    return (
+      <BrowserRouter>
+        <TodoContext.Provider
+          value={{
+            todos: this.state.todos,
+            addTodo: this.addTodo,
+            deleteTodo: this.deleteTodo
+          }}
+        >
+          <div className="App">
+            <Navbar />
+            <Route path="/" exact component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            <Route path="/todo/:todoId" component={TodoDetails} />
+          </div>
+        </TodoContext.Provider>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default TodoApp;
